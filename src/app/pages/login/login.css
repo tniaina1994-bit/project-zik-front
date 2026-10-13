@@ -1,0 +1,144 @@
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(229, 9, 20, 0.15) 0%, transparent 70%),
+    linear-gradient(180deg, #141414 0%, #1a1a2e 100%);
+}
+
+.login-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 1rem;
+}
+
+.login-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: var(--transition);
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-primary:disabled {
+  background: #4a1515;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.alert-error {
+  background: rgba(229, 9, 20, 0.15);
+  color: var(--error);
+  border: 1px solid rgba(229, 9, 20, 0.3);
+}
+
+.alert-success {
+  background: rgba(70, 211, 105, 0.15);
+  color: var(--success);
+  border: 1px solid rgba(70, 211, 105, 0.3);
+}
+
+.footer-text {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.footer-text a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+}

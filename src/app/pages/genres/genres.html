@@ -1,0 +1,68 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Genres</h1>
+    <button class="btn btn-primary" (click)="openCreate()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Ajouter
+    </button>
+  </div>
+
+  @if (showForm) {
+    <div class="modal-overlay" (click)="cancel()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2>{{ editing ? 'Modifier' : 'Ajouter' }} un genre</h2>
+          <button class="btn-close" (click)="cancel()">&times;</button>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nom</label>
+                <input formControlName="name" placeholder="Rock" />
+              </div>
+              <div class="form-group">
+                <label>Slug</label>
+                <input formControlName="slug" placeholder="rock" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Couleur</label>
+              <div class="color-input">
+                <input type="color" formControlName="color" />
+                <input formControlName="color" placeholder="#e74c3c" />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+              {{ editing ? 'Modifier' : 'Créer' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <div class="card-grid">
+    @for (genre of genres; track genre.id) {
+      <div class="card" [style.--card-color]="genre.color || '#666'" [routerLink]="['/genres', genre.id]">
+        <div class="card-color-bar" [style.background]="genre.color || '#666'"></div>
+        <div class="card-body">
+          <h3>{{ genre.name }}</h3>
+          <p class="card-subtitle">{{ genre.slug }}</p>
+        </div>
+        <div class="card-actions" (click)="$event.stopPropagation()">
+          <button class="btn btn-sm btn-edit" (click)="openEdit(genre)">Modifier</button>
+          <button class="btn btn-sm btn-delete" (click)="delete(genre.id)">Supprimer</button>
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <p>Aucun genre pour le moment</p>
+      </div>
+    }
+  </div>
+</div>

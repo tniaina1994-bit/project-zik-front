@@ -1,0 +1,51 @@
+<div class="login-page">
+  <div class="login-bg"></div>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Projet Zik</h1>
+        <p class="subtitle">Connectez-vous à votre compte</p>
+      </div>
+
+      @if (success) {
+        <div class="alert alert-success">{{ success }}</div>
+      }
+      @if (error) {
+        <div class="alert alert-error">{{ error }}</div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="john@example.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          Se connecter
+        </button>
+      </form>
+
+      <p class="footer-text">
+        Pas encore de compte ?
+        <a routerLink="/register">S'inscrire</a>
+      </p>
+    </div>
+  </div>
+</div>

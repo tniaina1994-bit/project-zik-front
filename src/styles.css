@@ -1,3 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-primary: #141414;
+  --bg-secondary: #1a1a2e;
+  --bg-card: #1e1e2f;
+  --bg-card-hover: #2a2a3d;
+  --bg-input: #2a2a3d;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-muted: #6b7280;
+  --accent: #e50914;
+  --accent-hover: #f40612;
+  --accent-glow: rgba(229, 9, 20, 0.3);
+  --border: #333;
+  --border-light: #404040;
+  --success: #46d369;
+  --error: #e50914;
+  --warning: #ffa500;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --transition: all 0.3s ease;
+}
 
-@import 'tailwindcss';
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

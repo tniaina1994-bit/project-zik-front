@@ -1,0 +1,21 @@
+@if (artist) {
+  <div class="show-page">
+    <a routerLink="/artists" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour aux artistes
+    </a>
+
+    <div class="show-hero">
+      <div class="show-img" [style.background-image]="'url(' + (artist.image || 'https://via.placeholder.com/400x400/1a1a2e/666?text=' + artist.name.charAt(0)) + ')'"></div>
+      <div class="show-info">
+        <h1>{{ artist.name }}</h1>
+        <p class="slug">{{ artist.slug }}</p>
+        @if (artist.bio) {
+          <p class="bio">{{ artist.bio }}</p>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="loading">Chargement...</div>
+}

@@ -1,0 +1,21 @@
+@if (genre) {
+  <div class="show-page">
+    <a routerLink="/genres" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour aux genres
+    </a>
+
+    <div class="show-card" [style.--show-color]="genre.color || '#666'">
+      <div class="show-color-bar" [style.background]="genre.color || '#666'"></div>
+      <div class="show-body">
+        <div class="show-color-dot" [style.background]="genre.color || '#666'"></div>
+        <div>
+          <h1>{{ genre.name }}</h1>
+          <p class="slug">{{ genre.slug }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="loading">Chargement...</div>
+}

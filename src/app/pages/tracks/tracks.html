@@ -1,0 +1,109 @@
+<div class="page">
+  <div class="page-header">
+    <h1>Morceaux</h1>
+    <button class="btn btn-primary" (click)="openCreate()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Ajouter
+    </button>
+  </div>
+
+  @if (showForm) {
+    <div class="modal-overlay" (click)="cancel()">
+      <div class="modal modal-lg" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2>{{ editing ? 'Modifier' : 'Ajouter' }} un morceau</h2>
+          <button class="btn-close" (click)="cancel()">&times;</button>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Titre</label>
+                <input formControlName="title" placeholder="Smells Like Teen Spirit" />
+              </div>
+              <div class="form-group">
+                <label>Slug</label>
+                <input formControlName="slug" placeholder="smells-like-teen-spirit" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Artiste</label>
+                <select formControlName="artist_id">
+                  <option value="">Sélectionner...</option>
+                  @for (a of artists; track a.id) {
+                    <option [value]="a.id">{{ a.name }}</option>
+                  }
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Album</label>
+                <select formControlName="album_id">
+                  <option value="">Aucun</option>
+                  @for (al of albums; track al.id) {
+                    <option [value]="al.id">{{ al.title }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Durée (secondes)</label>
+                <input type="number" formControlName="duration" placeholder="301" />
+              </div>
+              <div class="form-group">
+                <label>Fichier</label>
+                <input formControlName="file_path" placeholder="/storage/music/..." />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Genres</label>
+              <div class="checkbox-group">
+                @for (genre of genres; track genre.id) {
+                  <label class="checkbox-label" [style.--tag-color]="genre.color || '#666'">
+                    <input
+                      type="checkbox"
+                      [value]="genre.id"
+                      [checked]="selectedGenres.includes(genre.id)"
+                      (change)="toggleGenre(genre.id)"
+                    />
+                    {{ genre.name }}
+                  </label>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cancel()">Annuler</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+              {{ editing ? 'Modifier' : 'Créer' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  <div class="card-grid">
+    @for (track of tracks; track track.id) {
+      <div class="card" [routerLink]="['/tracks', track.id]">
+        <div class="card-body">
+          <div class="track-header">
+            <h3>{{ track.title }}</h3>
+            <span class="duration">{{ formatDuration(track.duration) }}</span>
+          </div>
+          <p class="card-subtitle">{{ getArtistName(track.artist_id) }}</p>
+        </div>
+        <div class="card-actions" (click)="$event.stopPropagation()">
+          <button class="btn btn-sm btn-edit" (click)="openEdit(track)">Modifier</button>
+          <button class="btn btn-sm btn-delete" (click)="delete(track.id)">Supprimer</button>
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.3"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <p>Aucun morceau pour le moment</p>
+      </div>
+    }
+  </div>
+</div>

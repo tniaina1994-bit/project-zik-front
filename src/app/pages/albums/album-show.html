@@ -1,0 +1,21 @@
+@if (album) {
+  <div class="show-page">
+    <a routerLink="/albums" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour aux albums
+    </a>
+
+    <div class="show-hero">
+      <div class="show-img" [style.background-image]="'url(' + (album.cover_image || 'https://via.placeholder.com/400x400/1a1a2e/666?text=' + album.title.charAt(0)) + ')'">
+        <div class="show-year">{{ album.release_year }}</div>
+      </div>
+      <div class="show-info">
+        <h1>{{ album.title }}</h1>
+        <p class="artist-name">{{ getArtistName(album.artist_id) }}</p>
+        <p class="slug">{{ album.slug }}</p>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="loading">Chargement...</div>
+}

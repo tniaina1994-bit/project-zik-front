@@ -1,0 +1,22 @@
+@if (playlist) {
+  <div class="show-page">
+    <a routerLink="/playlists" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour aux playlists
+    </a>
+
+    <div class="show-hero">
+      <div class="show-img" [style.background-image]="'url(' + (playlist.cover_image || 'https://via.placeholder.com/400x400/1a1a2e/666?text=🎵') + ')'">
+        <div class="show-badge">{{ playlist.is_public ? 'Public' : 'Privé' }}</div>
+      </div>
+      <div class="show-info">
+        <h1>{{ playlist.title }}</h1>
+        @if (playlist.description) {
+          <p class="desc">{{ playlist.description }}</p>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="loading">Chargement...</div>
+}
